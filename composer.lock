@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cad98bd5bf537c85029a9fb7c7e4babc",
+    "content-hash": "18a271e8ba70db53008fe10eef02418f",
     "packages": [
         {
             "name": "predis/predis",
-            "version": "v2.x-dev",
+            "version": "v2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/predis/predis.git",
-                "reference": "be75254ab6333f00ec141762bee1cca741b0fbae"
+                "reference": "07105e050622ed80bd60808367ced9e379f31530"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/predis/predis/zipball/be75254ab6333f00ec141762bee1cca741b0fbae",
-                "reference": "be75254ab6333f00ec141762bee1cca741b0fbae",
+                "url": "https://api.github.com/repos/predis/predis/zipball/07105e050622ed80bd60808367ced9e379f31530",
+                "reference": "07105e050622ed80bd60808367ced9e379f31530",
                 "shasum": ""
             },
             "require": {
@@ -58,7 +58,7 @@
             ],
             "support": {
                 "issues": "https://github.com/predis/predis/issues",
-                "source": "https://github.com/predis/predis/tree/v2.x"
+                "source": "https://github.com/predis/predis/tree/v2.4.1"
             },
             "funding": [
                 {
@@ -66,33 +66,29 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-11-12T18:01:35+00:00"
+            "time": "2025-11-12T18:00:11+00:00"
         },
         {
             "name": "psr/cache",
-            "version": "dev-master",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/cache.git",
-                "reference": "588d5ff7035e78cd4f69eb798890749ac4641b30"
+                "reference": "aa5030cfa5405eccfdcb1083ce040c2cb8d253bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/cache/zipball/588d5ff7035e78cd4f69eb798890749ac4641b30",
-                "reference": "588d5ff7035e78cd4f69eb798890749ac4641b30",
+                "url": "https://api.github.com/repos/php-fig/cache/zipball/aa5030cfa5405eccfdcb1083ce040c2cb8d253bf",
+                "reference": "aa5030cfa5405eccfdcb1083ce040c2cb8d253bf",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.0.0"
             },
-            "suggest": {
-                "fig/cache-util": "Provides some useful PSR-6 utilities"
-            },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0.x-dev"
+                    "dev-master": "1.0.x-dev"
                 }
             },
             "autoload": {
@@ -117,28 +113,27 @@
                 "psr-6"
             ],
             "support": {
-                "source": "https://github.com/php-fig/cache"
+                "source": "https://github.com/php-fig/cache/tree/3.0.0"
             },
-            "time": "2025-04-11T19:21:12+00:00"
+            "time": "2021-02-03T23:26:27+00:00"
         },
         {
             "name": "psr/container",
-            "version": "dev-master",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/container.git",
-                "reference": "707984727bd5b2b670e59559d3ed2500240cf875"
+                "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/707984727bd5b2b670e59559d3ed2500240cf875",
-                "reference": "707984727bd5b2b670e59559d3ed2500240cf875",
+                "url": "https://api.github.com/repos/php-fig/container/zipball/c71ecc56dfe541dbd90c5360474fbc405f8d5963",
+                "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.4.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -171,31 +166,27 @@
             ],
             "support": {
                 "issues": "https://github.com/php-fig/container/issues",
-                "source": "https://github.com/php-fig/container"
+                "source": "https://github.com/php-fig/container/tree/2.0.2"
             },
-            "time": "2023-09-22T11:11:30+00:00"
+            "time": "2021-11-05T16:47:00+00:00"
         },
         {
             "name": "psr/event-dispatcher",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/event-dispatcher.git",
-                "reference": "bbd9eacc080d33861e5b5c75b3b8c4d7e6d01874"
+                "reference": "dbefd12671e8a14ec7f180cab83036ed26714bb0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/event-dispatcher/zipball/bbd9eacc080d33861e5b5c75b3b8c4d7e6d01874",
-                "reference": "bbd9eacc080d33861e5b5c75b3b8c4d7e6d01874",
+                "url": "https://api.github.com/repos/php-fig/event-dispatcher/zipball/dbefd12671e8a14ec7f180cab83036ed26714bb0",
+                "reference": "dbefd12671e8a14ec7f180cab83036ed26714bb0",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2.0"
             },
-            "suggest": {
-                "fig/event-dispatcher-util": "Provides some useful PSR-14 utilities"
-            },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -214,7 +205,7 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
-                    "homepage": "https://www.php-fig.org/"
+                    "homepage": "http://www.php-fig.org/"
                 }
             ],
             "description": "Standard interfaces for event handling.",
@@ -224,13 +215,14 @@
                 "psr-14"
             ],
             "support": {
-                "source": "https://github.com/php-fig/event-dispatcher"
+                "issues": "https://github.com/php-fig/event-dispatcher/issues",
+                "source": "https://github.com/php-fig/event-dispatcher/tree/1.0.0"
             },
-            "time": "2024-03-17T21:29:03+00:00"
+            "time": "2019-01-08T18:20:26+00:00"
         },
         {
             "name": "psr/http-client",
-            "version": "dev-master",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/http-client.git",
@@ -246,7 +238,6 @@
                 "php": "^7.0 || ^8.0",
                 "psr/http-message": "^1.0 || ^2.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -338,7 +329,7 @@
         },
         {
             "name": "psr/http-message",
-            "version": "dev-master",
+            "version": "2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/http-message.git",
@@ -353,7 +344,6 @@
             "require": {
                 "php": "^7.2 || ^8.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -392,23 +382,22 @@
         },
         {
             "name": "psr/http-server-handler",
-            "version": "dev-master",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/http-server-handler.git",
-                "reference": "13403d43196ab3382d0a4ca28be32984282641f9"
+                "reference": "84c4fb66179be4caaf8e97bd239203245302e7d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-server-handler/zipball/13403d43196ab3382d0a4ca28be32984282641f9",
-                "reference": "13403d43196ab3382d0a4ca28be32984282641f9",
+                "url": "https://api.github.com/repos/php-fig/http-server-handler/zipball/84c4fb66179be4caaf8e97bd239203245302e7d4",
+                "reference": "84c4fb66179be4caaf8e97bd239203245302e7d4",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.0",
                 "psr/http-message": "^1.0 || ^2.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -443,22 +432,22 @@
                 "server"
             ],
             "support": {
-                "source": "https://github.com/php-fig/http-server-handler"
+                "source": "https://github.com/php-fig/http-server-handler/tree/1.0.2"
             },
-            "time": "2023-11-16T18:17:39+00:00"
+            "time": "2023-04-10T20:06:20+00:00"
         },
         {
             "name": "psr/http-server-middleware",
-            "version": "dev-master",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/http-server-middleware.git",
-                "reference": "459eeb7efeae55b4102a951c4ecc93a11ce58d0f"
+                "reference": "c1481f747daaa6a0782775cd6a8c26a1bf4a3829"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-server-middleware/zipball/459eeb7efeae55b4102a951c4ecc93a11ce58d0f",
-                "reference": "459eeb7efeae55b4102a951c4ecc93a11ce58d0f",
+                "url": "https://api.github.com/repos/php-fig/http-server-middleware/zipball/c1481f747daaa6a0782775cd6a8c26a1bf4a3829",
+                "reference": "c1481f747daaa6a0782775cd6a8c26a1bf4a3829",
                 "shasum": ""
             },
             "require": {
@@ -466,7 +455,6 @@
                 "psr/http-message": "^1.0 || ^2.0",
                 "psr/http-server-handler": "^1.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -501,13 +489,13 @@
             ],
             "support": {
                 "issues": "https://github.com/php-fig/http-server-middleware/issues",
-                "source": "https://github.com/php-fig/http-server-middleware"
+                "source": "https://github.com/php-fig/http-server-middleware/tree/1.0.2"
             },
-            "time": "2023-09-22T11:17:21+00:00"
+            "time": "2023-04-11T06:14:47+00:00"
         },
         {
             "name": "psr/log",
-            "version": "dev-master",
+            "version": "3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
@@ -522,7 +510,6 @@
             "require": {
                 "php": ">=8.0.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -558,22 +545,21 @@
         },
         {
             "name": "psr/simple-cache",
-            "version": "dev-master",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/simple-cache.git",
-                "reference": "2d280c2aaa23a120f35d55cfde8581954a8e77fa"
+                "reference": "764e0b3939f5ca87cb904f570ef9be2d78a07865"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/2d280c2aaa23a120f35d55cfde8581954a8e77fa",
-                "reference": "2d280c2aaa23a120f35d55cfde8581954a8e77fa",
+                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/764e0b3939f5ca87cb904f570ef9be2d78a07865",
+                "reference": "764e0b3939f5ca87cb904f570ef9be2d78a07865",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.0.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -604,22 +590,22 @@
                 "simple-cache"
             ],
             "support": {
-                "source": "https://github.com/php-fig/simple-cache/tree/master"
+                "source": "https://github.com/php-fig/simple-cache/tree/3.0.0"
             },
-            "time": "2022-04-08T16:41:45+00:00"
+            "time": "2021-10-29T13:26:27+00:00"
         },
         {
             "name": "waffle-commons/cache",
-            "version": "dev-main",
+            "version": "0.1.0-beta2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/cache.git",
-                "reference": "631677716d594471efceee8e1ac6ed3747a55a59"
+                "reference": "a827382f1f3909926db3cfa72ac3ec5d0e7cc086"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/cache/zipball/631677716d594471efceee8e1ac6ed3747a55a59",
-                "reference": "631677716d594471efceee8e1ac6ed3747a55a59",
+                "url": "https://api.github.com/repos/waffle-commons/cache/zipball/a827382f1f3909926db3cfa72ac3ec5d0e7cc086",
+                "reference": "a827382f1f3909926db3cfa72ac3ec5d0e7cc086",
                 "shasum": ""
             },
             "require": {
@@ -634,7 +620,6 @@
                 "phpunit/phpunit": "^12.5",
                 "vimeo/psalm": "^6.16"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -654,22 +639,22 @@
             "description": "Cache component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/cache/issues",
-                "source": "https://github.com/waffle-commons/cache/tree/main"
+                "source": "https://github.com/waffle-commons/cache/tree/0.1.0-beta2.1"
             },
-            "time": "2026-05-29T13:45:14+00:00"
+            "time": "2026-05-30T18:51:00+00:00"
         },
         {
             "name": "waffle-commons/config",
-            "version": "dev-main",
+            "version": "0.1.0-beta2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/config.git",
-                "reference": "db16bd429b4434ba8640b9fc9e1241079efd8bfa"
+                "reference": "03861965554bf7694e1e3613e98d918a93dd017d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/config/zipball/db16bd429b4434ba8640b9fc9e1241079efd8bfa",
-                "reference": "db16bd429b4434ba8640b9fc9e1241079efd8bfa",
+                "url": "https://api.github.com/repos/waffle-commons/config/zipball/03861965554bf7694e1e3613e98d918a93dd017d",
+                "reference": "03861965554bf7694e1e3613e98d918a93dd017d",
                 "shasum": ""
             },
             "require": {
@@ -684,7 +669,6 @@
                 "phpunit/phpunit": "^12.5",
                 "vimeo/psalm": "^6.16"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -704,22 +688,22 @@
             "description": "Config component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/config/issues",
-                "source": "https://github.com/waffle-commons/config/tree/main"
+                "source": "https://github.com/waffle-commons/config/tree/0.1.0-beta2.1"
             },
-            "time": "2026-05-29T13:48:32+00:00"
+            "time": "2026-05-30T18:53:26+00:00"
         },
         {
             "name": "waffle-commons/container",
-            "version": "dev-main",
+            "version": "0.1.0-beta2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/container.git",
-                "reference": "f429ad2c6925d2daf4a4746594770484e74f4628"
+                "reference": "8a9dc8807ce409ea8ad66262e33c0c849209d133"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/container/zipball/f429ad2c6925d2daf4a4746594770484e74f4628",
-                "reference": "f429ad2c6925d2daf4a4746594770484e74f4628",
+                "url": "https://api.github.com/repos/waffle-commons/container/zipball/8a9dc8807ce409ea8ad66262e33c0c849209d133",
+                "reference": "8a9dc8807ce409ea8ad66262e33c0c849209d133",
                 "shasum": ""
             },
             "require": {
@@ -734,7 +718,6 @@
                 "phpunit/phpunit": "^12.5",
                 "vimeo/psalm": "^6.16"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -754,22 +737,22 @@
             "description": "Container component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/container/issues",
-                "source": "https://github.com/waffle-commons/container/tree/main"
+                "source": "https://github.com/waffle-commons/container/tree/0.1.0-beta2.1"
             },
-            "time": "2026-05-29T13:59:22+00:00"
+            "time": "2026-05-30T18:57:56+00:00"
         },
         {
             "name": "waffle-commons/contracts",
-            "version": "dev-main",
+            "version": "0.1.0-beta2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/contracts.git",
-                "reference": "1492405974ad0ba80cd9b8094c339aedbe373261"
+                "reference": "7acfd0427a54b0b6908ea2c4e064f2e5526f8d5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/contracts/zipball/1492405974ad0ba80cd9b8094c339aedbe373261",
-                "reference": "1492405974ad0ba80cd9b8094c339aedbe373261",
+                "url": "https://api.github.com/repos/waffle-commons/contracts/zipball/7acfd0427a54b0b6908ea2c4e064f2e5526f8d5b",
+                "reference": "7acfd0427a54b0b6908ea2c4e064f2e5526f8d5b",
                 "shasum": ""
             },
             "require": {
@@ -791,7 +774,6 @@
                 "phpunit/phpunit": "^12.5",
                 "vimeo/psalm": "^6.16"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -811,22 +793,22 @@
             "description": "Contracts component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/contracts/issues",
-                "source": "https://github.com/waffle-commons/contracts/tree/0.1.0-beta2"
+                "source": "https://github.com/waffle-commons/contracts/tree/0.1.0-beta2.1"
             },
-            "time": "2026-05-29T13:32:42+00:00"
+            "time": "2026-05-30T18:44:28+00:00"
         },
         {
             "name": "waffle-commons/error-handler",
-            "version": "dev-main",
+            "version": "0.1.0-beta2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/error-handler.git",
-                "reference": "434c151f9c6b16e82ba496101b537b863baeb72d"
+                "reference": "7b36510bf9f1689d716e252a30d084751d3d71f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/error-handler/zipball/434c151f9c6b16e82ba496101b537b863baeb72d",
-                "reference": "434c151f9c6b16e82ba496101b537b863baeb72d",
+                "url": "https://api.github.com/repos/waffle-commons/error-handler/zipball/7b36510bf9f1689d716e252a30d084751d3d71f7",
+                "reference": "7b36510bf9f1689d716e252a30d084751d3d71f7",
                 "shasum": ""
             },
             "require": {
@@ -843,7 +825,6 @@
                 "phpunit/phpunit": "^12.5",
                 "vimeo/psalm": "^6.16"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -863,22 +844,22 @@
             "description": "Error-Handler component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/error-handler/issues",
-                "source": "https://github.com/waffle-commons/error-handler/tree/main"
+                "source": "https://github.com/waffle-commons/error-handler/tree/0.1.0-beta2.1"
             },
-            "time": "2026-05-29T14:02:13+00:00"
+            "time": "2026-05-30T18:58:55+00:00"
         },
         {
             "name": "waffle-commons/http",
-            "version": "dev-main",
+            "version": "0.1.0-beta2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/http.git",
-                "reference": "fa9096a59a6adf34fb5b5c0b5b203b68d7da659f"
+                "reference": "ebd60bd4d5b14889a14d6c6f0687b229c669a9cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/http/zipball/fa9096a59a6adf34fb5b5c0b5b203b68d7da659f",
-                "reference": "fa9096a59a6adf34fb5b5c0b5b203b68d7da659f",
+                "url": "https://api.github.com/repos/waffle-commons/http/zipball/ebd60bd4d5b14889a14d6c6f0687b229c669a9cb",
+                "reference": "ebd60bd4d5b14889a14d6c6f0687b229c669a9cb",
                 "shasum": ""
             },
             "require": {
@@ -894,7 +875,6 @@
                 "phpunit/phpunit": "^12.5",
                 "vimeo/psalm": "^6.16"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -914,22 +894,22 @@
             "description": "Http component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/http/issues",
-                "source": "https://github.com/waffle-commons/http/tree/main"
+                "source": "https://github.com/waffle-commons/http/tree/0.1.0-beta2.1"
             },
-            "time": "2026-05-29T14:10:57+00:00"
+            "time": "2026-05-30T19:02:52+00:00"
         },
         {
             "name": "waffle-commons/http-client",
-            "version": "dev-main",
+            "version": "0.1.0-beta2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/http-client.git",
-                "reference": "4004de090e3a9d21a74de964bf1ad46b681031ee"
+                "reference": "f465528c0e2dfd0bd673a5f7e32c1acde2f7f7a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/http-client/zipball/4004de090e3a9d21a74de964bf1ad46b681031ee",
-                "reference": "4004de090e3a9d21a74de964bf1ad46b681031ee",
+                "url": "https://api.github.com/repos/waffle-commons/http-client/zipball/f465528c0e2dfd0bd673a5f7e32c1acde2f7f7a6",
+                "reference": "f465528c0e2dfd0bd673a5f7e32c1acde2f7f7a6",
                 "shasum": ""
             },
             "require": {
@@ -948,7 +928,6 @@
                 "phpunit/phpunit": "^12.5",
                 "vimeo/psalm": "^6.16"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -968,22 +947,22 @@
             "description": "HTTP Client component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/http-client/issues",
-                "source": "https://github.com/waffle-commons/http-client/tree/main"
+                "source": "https://github.com/waffle-commons/http-client/tree/0.1.0-beta2.1"
             },
-            "time": "2026-05-29T14:17:13+00:00"
+            "time": "2026-05-30T19:04:26+00:00"
         },
         {
             "name": "waffle-commons/pipeline",
-            "version": "dev-main",
+            "version": "0.1.0-beta2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/pipeline.git",
-                "reference": "c6ff9afd1a1354da4f45e2cbecd5c6ec980b7ddb"
+                "reference": "99c206396a74ccca62d824c6ef45792b72f75759"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/pipeline/zipball/c6ff9afd1a1354da4f45e2cbecd5c6ec980b7ddb",
-                "reference": "c6ff9afd1a1354da4f45e2cbecd5c6ec980b7ddb",
+                "url": "https://api.github.com/repos/waffle-commons/pipeline/zipball/99c206396a74ccca62d824c6ef45792b72f75759",
+                "reference": "99c206396a74ccca62d824c6ef45792b72f75759",
                 "shasum": ""
             },
             "require": {
@@ -999,7 +978,6 @@
                 "phpunit/phpunit": "^12.5",
                 "vimeo/psalm": "^6.16"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -1019,22 +997,22 @@
             "description": "Pipeline component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/pipeline/issues",
-                "source": "https://github.com/waffle-commons/pipeline/tree/main"
+                "source": "https://github.com/waffle-commons/pipeline/tree/0.1.0-beta2.1"
             },
-            "time": "2026-05-29T14:25:16+00:00"
+            "time": "2026-05-30T19:07:23+00:00"
         },
         {
             "name": "waffle-commons/routing",
-            "version": "dev-main",
+            "version": "0.1.0-beta2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/routing.git",
-                "reference": "405a9ec359d9d2d92f02439ad6f577a54cd7f368"
+                "reference": "9b6b1246cc10267019eebd7b9d4be1f295ca120d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/routing/zipball/405a9ec359d9d2d92f02439ad6f577a54cd7f368",
-                "reference": "405a9ec359d9d2d92f02439ad6f577a54cd7f368",
+                "url": "https://api.github.com/repos/waffle-commons/routing/zipball/9b6b1246cc10267019eebd7b9d4be1f295ca120d",
+                "reference": "9b6b1246cc10267019eebd7b9d4be1f295ca120d",
                 "shasum": ""
             },
             "require": {
@@ -1050,7 +1028,6 @@
                 "phpunit/phpunit": "^12.5",
                 "vimeo/psalm": "^6.16"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -1070,22 +1047,22 @@
             "description": "Routing component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/routing/issues",
-                "source": "https://github.com/waffle-commons/routing/tree/main"
+                "source": "https://github.com/waffle-commons/routing/tree/0.1.0-beta2.1"
             },
-            "time": "2026-05-29T14:28:36+00:00"
+            "time": "2026-05-30T19:09:04+00:00"
         },
         {
             "name": "waffle-commons/runtime",
-            "version": "dev-main",
+            "version": "0.1.0-beta2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/runtime.git",
-                "reference": "118c840716506210d50ea09434db5f6ca6e6959c"
+                "reference": "e408456eb00869f36218caa486362416ac38b1f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/runtime/zipball/118c840716506210d50ea09434db5f6ca6e6959c",
-                "reference": "118c840716506210d50ea09434db5f6ca6e6959c",
+                "url": "https://api.github.com/repos/waffle-commons/runtime/zipball/e408456eb00869f36218caa486362416ac38b1f3",
+                "reference": "e408456eb00869f36218caa486362416ac38b1f3",
                 "shasum": ""
             },
             "require": {
@@ -1102,7 +1079,6 @@
                 "phpunit/phpunit": "^12.5",
                 "vimeo/psalm": "^6.16"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -1122,22 +1098,22 @@
             "description": "Runtime component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/runtime/issues",
-                "source": "https://github.com/waffle-commons/runtime/tree/main"
+                "source": "https://github.com/waffle-commons/runtime/tree/0.1.0-beta2.1"
             },
-            "time": "2026-05-29T14:34:19+00:00"
+            "time": "2026-05-30T19:11:11+00:00"
         },
         {
             "name": "waffle-commons/security",
-            "version": "dev-main",
+            "version": "0.1.0-beta2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/security.git",
-                "reference": "5c5beb4b2e23eadb16a0aa83902614921cab71bc"
+                "reference": "aa352dff0b88c3846b26ec303b9a47eb2cb14279"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/security/zipball/5c5beb4b2e23eadb16a0aa83902614921cab71bc",
-                "reference": "5c5beb4b2e23eadb16a0aa83902614921cab71bc",
+                "url": "https://api.github.com/repos/waffle-commons/security/zipball/aa352dff0b88c3846b26ec303b9a47eb2cb14279",
+                "reference": "aa352dff0b88c3846b26ec303b9a47eb2cb14279",
                 "shasum": ""
             },
             "require": {
@@ -1155,7 +1131,6 @@
                 "phpunit/phpunit": "^12.5",
                 "vimeo/psalm": "^6.16"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -1175,22 +1150,22 @@
             "description": "Security component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/security/issues",
-                "source": "https://github.com/waffle-commons/security/tree/main"
+                "source": "https://github.com/waffle-commons/security/tree/0.1.0-beta2.1"
             },
-            "time": "2026-05-29T14:37:19+00:00"
+            "time": "2026-05-30T19:13:22+00:00"
         },
         {
             "name": "waffle-commons/utils",
-            "version": "dev-main",
+            "version": "0.1.0-beta2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/utils.git",
-                "reference": "72c031ed45ab6290342d2d8e2b467b1d3a1e9122"
+                "reference": "434d5929dc75a62050b726ba2cb3532d680557d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/utils/zipball/72c031ed45ab6290342d2d8e2b467b1d3a1e9122",
-                "reference": "72c031ed45ab6290342d2d8e2b467b1d3a1e9122",
+                "url": "https://api.github.com/repos/waffle-commons/utils/zipball/434d5929dc75a62050b726ba2cb3532d680557d4",
+                "reference": "434d5929dc75a62050b726ba2cb3532d680557d4",
                 "shasum": ""
             },
             "require": {
@@ -1204,7 +1179,6 @@
                 "phpunit/phpunit": "^12.5",
                 "vimeo/psalm": "^6.16"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -1224,22 +1198,22 @@
             "description": "Utils component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/utils/issues",
-                "source": "https://github.com/waffle-commons/utils/tree/main"
+                "source": "https://github.com/waffle-commons/utils/tree/0.1.0-beta2.1"
             },
-            "time": "2026-05-29T13:38:54+00:00"
+            "time": "2026-05-30T18:48:59+00:00"
         },
         {
             "name": "waffle-commons/waffle",
-            "version": "dev-main",
+            "version": "0.1.0-beta2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/waffle.git",
-                "reference": "b6b1c506420dcb4de9f475101dc9fdd257b3d481"
+                "reference": "a83168961bd4a82e0a4666379e4c1a1ffa222e53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/waffle/zipball/b6b1c506420dcb4de9f475101dc9fdd257b3d481",
-                "reference": "b6b1c506420dcb4de9f475101dc9fdd257b3d481",
+                "url": "https://api.github.com/repos/waffle-commons/waffle/zipball/a83168961bd4a82e0a4666379e4c1a1ffa222e53",
+                "reference": "a83168961bd4a82e0a4666379e4c1a1ffa222e53",
                 "shasum": ""
             },
             "require": {
@@ -1261,7 +1235,6 @@
                 "phpunit/phpunit": "^12.5",
                 "vimeo/psalm": "^6.16"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -1281,27 +1254,27 @@
             "description": "A modern, minimalist, and security-focused PHP micro-framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/waffle/issues",
-                "source": "https://github.com/waffle-commons/waffle/tree/main"
+                "source": "https://github.com/waffle-commons/waffle/tree/0.1.0-beta2.1"
             },
-            "time": "2026-05-29T14:38:40+00:00"
+            "time": "2026-05-30T19:14:49+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "dev",
+    "minimum-stability": "beta",
     "stability-flags": {
-        "waffle-commons/cache": 20,
-        "waffle-commons/config": 20,
-        "waffle-commons/container": 20,
-        "waffle-commons/contracts": 20,
-        "waffle-commons/error-handler": 20,
-        "waffle-commons/http": 20,
-        "waffle-commons/http-client": 20,
-        "waffle-commons/pipeline": 20,
-        "waffle-commons/routing": 20,
-        "waffle-commons/runtime": 20,
-        "waffle-commons/security": 20,
-        "waffle-commons/waffle": 20
+        "waffle-commons/cache": 10,
+        "waffle-commons/config": 10,
+        "waffle-commons/container": 10,
+        "waffle-commons/contracts": 10,
+        "waffle-commons/error-handler": 10,
+        "waffle-commons/http": 10,
+        "waffle-commons/http-client": 10,
+        "waffle-commons/pipeline": 10,
+        "waffle-commons/routing": 10,
+        "waffle-commons/runtime": 10,
+        "waffle-commons/security": 10,
+        "waffle-commons/waffle": 10
     },
     "prefer-stable": false,
     "prefer-lowest": false,
