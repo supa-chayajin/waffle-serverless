@@ -28,18 +28,4 @@ use Waffle\Kernel as BaseKernel;
  * point d'extension documenté garantissant l'absence de fuite d'état entre les
  * invocations du worker FrankenPHP (statelessness).
  */
-final class AppKernel extends BaseKernel
-{
-    /**
-     * Réinitialisation post-requête (mandat de statelessness FrankenPHP).
-     *
-     * Délègue au Kernel parent, qui purge le conteneur (services à portée
-     * requête) via Container::reset(). Tout état applicatif à vider entre deux
-     * invocations Lambda devra l'être ICI, avant l'appel au parent.
-     */
-    #[\Override]
-    public function reset(): void
-    {
-        parent::reset();
-    }
-}
+final class AppKernel extends BaseKernel {}

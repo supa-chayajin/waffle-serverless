@@ -1,11 +1,12 @@
 services:
-  demo-aws:
+  serverless:
     # Construction à partir du stage 'prod' du Dockerfile.
     # Ce stage est minimal, sécurisé et contient le code optimisé.
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile
       target: prod
+    container_name: waffle-serverless
     # CRITIQUE : pas de volumes en production !
     # Le code est immuable et figé dans l'image.
     volumes: []
@@ -27,10 +28,10 @@ services:
     restart: always
     networks:
       - waffle-network
-      - waffle-lambda
+      - waffle-serverless
 
 networks:
   waffle-network:
     driver: bridge
-  waffle-lambda:
+  waffle-serverless:
     driver: bridge

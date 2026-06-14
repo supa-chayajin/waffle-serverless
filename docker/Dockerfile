@@ -71,7 +71,7 @@ ENV APP_ENV=prod \
     AWS_LWA_PORT=8080
 
 # Caddyfile du POC (mode worker + écoute sur :8080).
-COPY --from=builder /app/Caddyfile /etc/frankenphp/Caddyfile
+COPY docker/frankenphp/caddy/Caddyfile /etc/frankenphp/Caddyfile
 
 # Code applicatif préparé par le builder.
 COPY --from=builder /app/vendor /app/vendor
@@ -87,7 +87,7 @@ RUN { \
       echo "opcache.preload=/app/config/preload.php"; \
       echo "opcache.preload_user=root"; \
       echo "opcache.validate_timestamps=0"; \
-    } > "$PHP_INI_DIR/conf.d/zz-ecoshield.ini"
+    } > "$PHP_INI_DIR/conf.d/zz-serverless.ini"
 
 # Le AWS Lambda Web Adapter interroge ce port pour relayer les évènements.
 EXPOSE 8080

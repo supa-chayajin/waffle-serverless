@@ -1,6 +1,6 @@
 {
-    "name": "supa-chayajin/waffle-lambda",
-    "description": "PHP Proxy Shield on AWS Lambda",
+    "name": "supa-chayajin/waffle-serverless",
+    "description": "PHP Proxy Shield on Serverless Architecture",
     "type": "project",
     "license": "MIT",
     "autoload": {
@@ -20,17 +20,17 @@
     ],
     "minimum-stability": "beta",
     "require": {
-        "waffle-commons/contracts": "0.1.0-beta2.1",
-        "waffle-commons/waffle": "0.1.0-beta2.1",
-        "waffle-commons/container": "0.1.0-beta2.1",
-        "waffle-commons/config": "0.1.0-beta2.1",
-        "waffle-commons/runtime": "0.1.0-beta2.1",
-        "waffle-commons/pipeline": "0.1.0-beta2.1",
-        "waffle-commons/http": "0.1.0-beta2.1",
-        "waffle-commons/http-client": "0.1.0-beta2.1",
-        "waffle-commons/error-handler": "0.1.0-beta2.1",
-        "waffle-commons/routing": "0.1.0-beta2.1",
-        "waffle-commons/security": "0.1.0-beta2.1",
-        "waffle-commons/cache": "0.1.0-beta2.1"
+        "waffle-commons/contracts": "0.1.0-beta4",
+        "waffle-commons/waffle": "0.1.0-beta4",
+        "waffle-commons/container": "0.1.0-beta4",
+        "waffle-commons/config": "0.1.0-beta4",
+        "waffle-commons/runtime": "0.1.0-beta4",
+        "waffle-commons/pipeline": "0.1.0-beta4",
+        "waffle-commons/http": "0.1.0-beta4",
+        "waffle-commons/http-client": "0.1.0-beta4",
+        "waffle-commons/error-handler": "0.1.0-beta4",
+        "waffle-commons/routing": "0.1.0-beta4",
+        "waffle-commons/security": "0.1.0-beta4",
+        "waffle-commons/cache": "0.1.0-beta4"
     }
 }

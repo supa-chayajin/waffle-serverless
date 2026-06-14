@@ -1,12 +1,36 @@
-# Configuration principale d'EcoShield-Minimal (POC serverless AWS Lambda).
+# Configuration principale de l'application Waffle.
 waffle:
-  # Environnement applicatif (dev, prod, test), injecté par l'env serveur.
-  environment: '%env(APP_ENV)%'
-  # Mode debug : DOIT rester à false en production (évite la fuite d'informations).
+  # Environnement applicatif (dev, prod, test). Renseigné par la variable d'environnement serveur.
+  env: '%env(APP_ENV)%'
+  # Mode debug. À mettre à false en production pour des raisons de sécurité.
   debug: '%env(APP_DEBUG)%'
+  # Durcissement sécurité : hôtes de confiance.
+  # Liste des domaines autorisés. Si vide, tous les hôtes sont acceptés (DEV uniquement).
+  # En PROD, ce paramètre DOIT être renseigné pour prévenir l'injection d'en-tête Host.
+  trusted_hosts:
+    - localhost
   security:
-    # Niveau de sécurité minimal pour le POC (lu par le composant Security).
-    level: 1
+    level: 10
+    csrf:
+      # Secret de signature de 32 octets ou plus pour les jetons CSRF HMAC sans état (Beta-1 / SEC-01).
+      # Résolu depuis l'env WAFFLE_CSRF_SECRET. En prod, un secret absent ou trop
+      # court avorte le boot — renseignez-le dans votre manifeste de déploiement
+      # avant la mise en ligne.
+      secret: '%env(WAFFLE_CSRF_SECRET)%'
+    # CORS fail-closed (SEC-04) : liste blanche d'origines exactes
+    # (scheme://host[:port]). Vide par défaut ⇒ toute requête cross-origin est
+    # refusée. Ajoutez vos origines front-end pour l'ouvrir ; jamais « * » avec
+    # des cookies/identifiants (rejeté à la construction de CorsPolicy).
+    cors:
+      allowed_origins: []
+    # Protection SSRF (SEC-02) : le client HTTP sortant résout chaque hôte,
+    # épingle l'IP validée (CURLOPT_RESOLVE, anti-rebinding) et refuse toute
+    # adresse privée / loopback / réservée. `allowed_hosts` est la liste blanche
+    # d'hôtes internes de confiance (noms exacts ou CIDR, ex. « legacy-backend »
+    # ou « 10.0.0.0/8 ») exemptés du contrôle. Vide par défaut ⇒ posture stricte ;
+    # n'y placez QUE des backends que vous maîtrisez.
+    ssrf:
+      allowed_hosts: []
   paths:
     # Dossier scanné par le Router (découverte des #[Route]) ET par le conteneur
     # (auto-enregistrement des contrôleurs). INDISPENSABLE : sans ce chemin,

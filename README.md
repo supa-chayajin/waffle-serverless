@@ -1,4 +1,4 @@
-# waffle-lambda — EcoShield-Minimal
+# waffle-serverless — EcoShield-Minimal
 
 > POC : *PHP Proxy Shield* serverless tournant sur **AWS Lambda** via **FrankenPHP**
 > (mode worker) et l'**AWS Lambda Web Adapter** (LWA), bâti sur le framework
@@ -76,10 +76,10 @@ curl http://localhost:6080/
 
 ```bash
 # Construit le stage final « prod » (minimal, LWA + preload).
-docker build --target prod -t waffle-lambda:prod .
+docker build --target prod -t waffle-serverless:prod .
 
 # Le LWA n'agit qu'en contexte Lambda ; en local on interroge FrankenPHP directement.
-docker run --rm -p 6080:8080 -e APP_ENV=prod -e APP_DEBUG=0 waffle-lambda:prod
+docker run --rm -p 6080:8080 -e APP_ENV=prod -e APP_DEBUG=0 waffle-serverless:prod
 curl http://localhost:6080/
 ```
 

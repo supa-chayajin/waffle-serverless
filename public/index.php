@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
+use Waffle\Commons\Config\DotEnv;
 use Waffle\Commons\Contracts\Constant\Constant;
+use Waffle\Commons\Http\Emitter\ResponseEmitter;
+use Waffle\Commons\Http\Factory\GlobalsFactory;
 use Waffle\Commons\Runtime\WaffleRuntime;
 use Wfl\Factory\AppKernelFactory;
 
@@ -14,25 +17,22 @@ require_once __DIR__ . '/../vendor/autoload.php';
 define('APP_ROOT', realpath(path: dirname(path: __DIR__)));
 const APP_CONFIG = 'config';
 
-// Lecture de l'environnement processus SANS superglobales ($_ENV / $_SERVER
-// sont proscrits). getenv() suffit : Lambda et Docker injectent ces valeurs au
-// lancement du conteneur.
-$env = getenv(Constant::APP_ENV) ?: Constant::ENV_PROD;
-$debug = filter_var(getenv(Constant::APP_DEBUG), FILTER_VALIDATE_BOOL);
-$maxRequests = (int) (getenv('MAX_REQUESTS') ?: 500);
+new DotEnv(path: APP_ROOT)->load();
+$env = $_ENV[Constant::APP_ENV] ?? Constant::ENV_PROD;
+$debug = filter_var($_ENV[Constant::APP_DEBUG] ?? false, FILTER_VALIDATE_BOOL);
 
-// 1. Assemblage applicatif.
-// La Factory monte le conteneur, la configuration, la sécurité, le routeur et
-// le pipeline, puis renvoie un Kernel entièrement câblé.
+// 1. Contexte & assemblage.
+// On délègue à la Factory la création des implémentations concrètes.
 $kernel = AppKernelFactory::create(env: $env, debug: $debug);
 
-// 2. Exécution résidente (runtime agnostique).
-// Le Runtime amorce le Kernel UNE fois (boot + configure : conteneur et routes
-// compilés en mémoire), puis traite les invocations Lambda « chaudes » de
-// manière quasi instantanée via la boucle worker FrankenPHP.
-new WaffleRuntime()
+// 2. Runtime (agnostique).
+// Le runtime orchestre simplement la boucle FrankenPHP [Kernel + Request -> Emitter].
+// STAB-01 : la GlobalsFactory et l'émetteur sont des instances par processus,
+// injectées explicitement dans le runtime (aucun état statique partagé).
+$maxRequests = (int)($_SERVER['MAX_REQUESTS'] ?? 500);
+new WaffleRuntime(new GlobalsFactory(), new ResponseEmitter())
     ->loop(
         kernel: $kernel,
-        maxRequests: $maxRequests,
+        maxRequests: $maxRequests
     )
 ;

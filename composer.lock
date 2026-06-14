@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "18a271e8ba70db53008fe10eef02418f",
+    "content-hash": "df39280ada495cac6dfd15471579e1c7",
     "packages": [
         {
             "name": "predis/predis",
@@ -596,16 +596,16 @@
         },
         {
             "name": "waffle-commons/cache",
-            "version": "0.1.0-beta2.1",
+            "version": "0.1.0-beta4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/cache.git",
-                "reference": "a827382f1f3909926db3cfa72ac3ec5d0e7cc086"
+                "reference": "562ae69a6e552a46033044042ab688b7af01134b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/cache/zipball/a827382f1f3909926db3cfa72ac3ec5d0e7cc086",
-                "reference": "a827382f1f3909926db3cfa72ac3ec5d0e7cc086",
+                "url": "https://api.github.com/repos/waffle-commons/cache/zipball/562ae69a6e552a46033044042ab688b7af01134b",
+                "reference": "562ae69a6e552a46033044042ab688b7af01134b",
                 "shasum": ""
             },
             "require": {
@@ -616,6 +616,7 @@
             "require-dev": {
                 "carthage-software/mago": "^1.29",
                 "cyclonedx/cyclonedx-php-composer": "^6.2",
+                "igor-php/igor-php": "^0.7.0",
                 "php-mock/php-mock-phpunit": "^2.15",
                 "phpunit/phpunit": "^12.5",
                 "vimeo/psalm": "^6.16"
@@ -639,22 +640,22 @@
             "description": "Cache component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/cache/issues",
-                "source": "https://github.com/waffle-commons/cache/tree/0.1.0-beta2.1"
+                "source": "https://github.com/waffle-commons/cache/tree/0.1.0-beta4"
             },
-            "time": "2026-05-30T18:51:00+00:00"
+            "time": "2026-06-14T05:13:18+00:00"
         },
         {
             "name": "waffle-commons/config",
-            "version": "0.1.0-beta2.1",
+            "version": "0.1.0-beta4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/config.git",
-                "reference": "03861965554bf7694e1e3613e98d918a93dd017d"
+                "reference": "5e8faa8165ab687b8ed7bb630b4eb37ab8c3dc37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/config/zipball/03861965554bf7694e1e3613e98d918a93dd017d",
-                "reference": "03861965554bf7694e1e3613e98d918a93dd017d",
+                "url": "https://api.github.com/repos/waffle-commons/config/zipball/5e8faa8165ab687b8ed7bb630b4eb37ab8c3dc37",
+                "reference": "5e8faa8165ab687b8ed7bb630b4eb37ab8c3dc37",
                 "shasum": ""
             },
             "require": {
@@ -688,22 +689,22 @@
             "description": "Config component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/config/issues",
-                "source": "https://github.com/waffle-commons/config/tree/0.1.0-beta2.1"
+                "source": "https://github.com/waffle-commons/config/tree/0.1.0-beta4"
             },
-            "time": "2026-05-30T18:53:26+00:00"
+            "time": "2026-06-14T05:15:47+00:00"
         },
         {
             "name": "waffle-commons/container",
-            "version": "0.1.0-beta2.1",
+            "version": "0.1.0-beta4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/container.git",
-                "reference": "8a9dc8807ce409ea8ad66262e33c0c849209d133"
+                "reference": "2c7bb1e61eb1f916d55f798883f617a30ea4363f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/container/zipball/8a9dc8807ce409ea8ad66262e33c0c849209d133",
-                "reference": "8a9dc8807ce409ea8ad66262e33c0c849209d133",
+                "url": "https://api.github.com/repos/waffle-commons/container/zipball/2c7bb1e61eb1f916d55f798883f617a30ea4363f",
+                "reference": "2c7bb1e61eb1f916d55f798883f617a30ea4363f",
                 "shasum": ""
             },
             "require": {
@@ -714,6 +715,7 @@
             "require-dev": {
                 "carthage-software/mago": "^1.29",
                 "cyclonedx/cyclonedx-php-composer": "^6.2",
+                "igor-php/igor-php": "^0.7.0",
                 "php-mock/php-mock-phpunit": "^2.15",
                 "phpunit/phpunit": "^12.5",
                 "vimeo/psalm": "^6.16"
@@ -737,22 +739,22 @@
             "description": "Container component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/container/issues",
-                "source": "https://github.com/waffle-commons/container/tree/0.1.0-beta2.1"
+                "source": "https://github.com/waffle-commons/container/tree/0.1.0-beta4"
             },
-            "time": "2026-05-30T18:57:56+00:00"
+            "time": "2026-06-14T05:22:59+00:00"
         },
         {
             "name": "waffle-commons/contracts",
-            "version": "0.1.0-beta2.1",
+            "version": "0.1.0-beta4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/contracts.git",
-                "reference": "7acfd0427a54b0b6908ea2c4e064f2e5526f8d5b"
+                "reference": "a53e5e7a69db60bb8bc659dd5bb52c83333b0aa5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/contracts/zipball/7acfd0427a54b0b6908ea2c4e064f2e5526f8d5b",
-                "reference": "7acfd0427a54b0b6908ea2c4e064f2e5526f8d5b",
+                "url": "https://api.github.com/repos/waffle-commons/contracts/zipball/a53e5e7a69db60bb8bc659dd5bb52c83333b0aa5",
+                "reference": "a53e5e7a69db60bb8bc659dd5bb52c83333b0aa5",
                 "shasum": ""
             },
             "require": {
@@ -793,22 +795,22 @@
             "description": "Contracts component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/contracts/issues",
-                "source": "https://github.com/waffle-commons/contracts/tree/0.1.0-beta2.1"
+                "source": "https://github.com/waffle-commons/contracts/tree/0.1.0-beta4"
             },
-            "time": "2026-05-30T18:44:28+00:00"
+            "time": "2026-06-14T05:02:10+00:00"
         },
         {
             "name": "waffle-commons/error-handler",
-            "version": "0.1.0-beta2.1",
+            "version": "0.1.0-beta4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/error-handler.git",
-                "reference": "7b36510bf9f1689d716e252a30d084751d3d71f7"
+                "reference": "82880cc594f10c9d833e2e96b385f95036e398e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/error-handler/zipball/7b36510bf9f1689d716e252a30d084751d3d71f7",
-                "reference": "7b36510bf9f1689d716e252a30d084751d3d71f7",
+                "url": "https://api.github.com/repos/waffle-commons/error-handler/zipball/82880cc594f10c9d833e2e96b385f95036e398e8",
+                "reference": "82880cc594f10c9d833e2e96b385f95036e398e8",
                 "shasum": ""
             },
             "require": {
@@ -844,33 +846,35 @@
             "description": "Error-Handler component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/error-handler/issues",
-                "source": "https://github.com/waffle-commons/error-handler/tree/0.1.0-beta2.1"
+                "source": "https://github.com/waffle-commons/error-handler/tree/0.1.0-beta4"
             },
-            "time": "2026-05-30T18:58:55+00:00"
+            "time": "2026-06-14T05:37:51+00:00"
         },
         {
             "name": "waffle-commons/http",
-            "version": "0.1.0-beta2.1",
+            "version": "0.1.0-beta4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/http.git",
-                "reference": "ebd60bd4d5b14889a14d6c6f0687b229c669a9cb"
+                "reference": "da1fe5320cf17637b73b10e36b55e7f9bb17c86b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/http/zipball/ebd60bd4d5b14889a14d6c6f0687b229c669a9cb",
-                "reference": "ebd60bd4d5b14889a14d6c6f0687b229c669a9cb",
+                "url": "https://api.github.com/repos/waffle-commons/http/zipball/da1fe5320cf17637b73b10e36b55e7f9bb17c86b",
+                "reference": "da1fe5320cf17637b73b10e36b55e7f9bb17c86b",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.5",
                 "psr/http-factory": "^1.1",
                 "psr/http-message": "^2.0",
-                "waffle-commons/contracts": "self.version"
+                "waffle-commons/contracts": "self.version",
+                "waffle-commons/utils": "self.version"
             },
             "require-dev": {
                 "carthage-software/mago": "^1.29",
                 "cyclonedx/cyclonedx-php-composer": "^6.2",
+                "igor-php/igor-php": "^0.7.0",
                 "php-mock/php-mock-phpunit": "^2.15",
                 "phpunit/phpunit": "^12.5",
                 "vimeo/psalm": "^6.16"
@@ -894,22 +898,22 @@
             "description": "Http component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/http/issues",
-                "source": "https://github.com/waffle-commons/http/tree/0.1.0-beta2.1"
+                "source": "https://github.com/waffle-commons/http/tree/0.1.0-beta4"
             },
-            "time": "2026-05-30T19:02:52+00:00"
+            "time": "2026-06-14T05:42:50+00:00"
         },
         {
             "name": "waffle-commons/http-client",
-            "version": "0.1.0-beta2.1",
+            "version": "0.1.0-beta4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/http-client.git",
-                "reference": "f465528c0e2dfd0bd673a5f7e32c1acde2f7f7a6"
+                "reference": "422b13af81b94815483b367f1eb6d29dbbc92eb0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/http-client/zipball/f465528c0e2dfd0bd673a5f7e32c1acde2f7f7a6",
-                "reference": "f465528c0e2dfd0bd673a5f7e32c1acde2f7f7a6",
+                "url": "https://api.github.com/repos/waffle-commons/http-client/zipball/422b13af81b94815483b367f1eb6d29dbbc92eb0",
+                "reference": "422b13af81b94815483b367f1eb6d29dbbc92eb0",
                 "shasum": ""
             },
             "require": {
@@ -918,11 +922,13 @@
                 "psr/http-client": "^1.0",
                 "psr/http-factory": "^1.0",
                 "psr/http-message": "^1.1 || ^2.0",
-                "waffle-commons/contracts": "self.version"
+                "waffle-commons/contracts": "self.version",
+                "waffle-commons/utils": "self.version"
             },
             "require-dev": {
                 "carthage-software/mago": "^1.29",
                 "cyclonedx/cyclonedx-php-composer": "^6.2",
+                "igor-php/igor-php": "^0.7.0",
                 "nyholm/psr7": "^1.8",
                 "php-mock/php-mock-phpunit": "^2.15",
                 "phpunit/phpunit": "^12.5",
@@ -947,22 +953,22 @@
             "description": "HTTP Client component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/http-client/issues",
-                "source": "https://github.com/waffle-commons/http-client/tree/0.1.0-beta2.1"
+                "source": "https://github.com/waffle-commons/http-client/tree/0.1.0-beta4"
             },
-            "time": "2026-05-30T19:04:26+00:00"
+            "time": "2026-06-14T05:44:36+00:00"
         },
         {
             "name": "waffle-commons/pipeline",
-            "version": "0.1.0-beta2.1",
+            "version": "0.1.0-beta4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/pipeline.git",
-                "reference": "99c206396a74ccca62d824c6ef45792b72f75759"
+                "reference": "e8ac82e970e8059efba8fb0523f904dc273b2447"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/pipeline/zipball/99c206396a74ccca62d824c6ef45792b72f75759",
-                "reference": "99c206396a74ccca62d824c6ef45792b72f75759",
+                "url": "https://api.github.com/repos/waffle-commons/pipeline/zipball/e8ac82e970e8059efba8fb0523f904dc273b2447",
+                "reference": "e8ac82e970e8059efba8fb0523f904dc273b2447",
                 "shasum": ""
             },
             "require": {
@@ -974,6 +980,7 @@
             "require-dev": {
                 "carthage-software/mago": "^1.29",
                 "cyclonedx/cyclonedx-php-composer": "^6.2",
+                "igor-php/igor-php": "^0.7.0",
                 "php-mock/php-mock-phpunit": "^2.15",
                 "phpunit/phpunit": "^12.5",
                 "vimeo/psalm": "^6.16"
@@ -997,22 +1004,22 @@
             "description": "Pipeline component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/pipeline/issues",
-                "source": "https://github.com/waffle-commons/pipeline/tree/0.1.0-beta2.1"
+                "source": "https://github.com/waffle-commons/pipeline/tree/0.1.0-beta4"
             },
-            "time": "2026-05-30T19:07:23+00:00"
+            "time": "2026-06-14T05:48:31+00:00"
         },
         {
             "name": "waffle-commons/routing",
-            "version": "0.1.0-beta2.1",
+            "version": "0.1.0-beta4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/routing.git",
-                "reference": "9b6b1246cc10267019eebd7b9d4be1f295ca120d"
+                "reference": "a4ee89ea6dc2154b434eb29876a2ce2ab06d5c25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/routing/zipball/9b6b1246cc10267019eebd7b9d4be1f295ca120d",
-                "reference": "9b6b1246cc10267019eebd7b9d4be1f295ca120d",
+                "url": "https://api.github.com/repos/waffle-commons/routing/zipball/a4ee89ea6dc2154b434eb29876a2ce2ab06d5c25",
+                "reference": "a4ee89ea6dc2154b434eb29876a2ce2ab06d5c25",
                 "shasum": ""
             },
             "require": {
@@ -1047,34 +1054,34 @@
             "description": "Routing component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/routing/issues",
-                "source": "https://github.com/waffle-commons/routing/tree/0.1.0-beta2.1"
+                "source": "https://github.com/waffle-commons/routing/tree/0.1.0-beta4"
             },
-            "time": "2026-05-30T19:09:04+00:00"
+            "time": "2026-06-14T05:51:28+00:00"
         },
         {
             "name": "waffle-commons/runtime",
-            "version": "0.1.0-beta2.1",
+            "version": "0.1.0-beta4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/runtime.git",
-                "reference": "e408456eb00869f36218caa486362416ac38b1f3"
+                "reference": "a33be205fa38f83cf5b7ed26e3315e87c677d9b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/runtime/zipball/e408456eb00869f36218caa486362416ac38b1f3",
-                "reference": "e408456eb00869f36218caa486362416ac38b1f3",
+                "url": "https://api.github.com/repos/waffle-commons/runtime/zipball/a33be205fa38f83cf5b7ed26e3315e87c677d9b5",
+                "reference": "a33be205fa38f83cf5b7ed26e3315e87c677d9b5",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.5",
                 "psr/container": "^2.0",
                 "psr/http-message": "^1.1 || ^2.0",
-                "waffle-commons/contracts": "self.version",
-                "waffle-commons/http": "self.version"
+                "waffle-commons/contracts": "self.version"
             },
             "require-dev": {
                 "carthage-software/mago": "^1.29",
                 "cyclonedx/cyclonedx-php-composer": "^6.2",
+                "igor-php/igor-php": "^0.7.0",
                 "php-mock/php-mock-phpunit": "^2.15",
                 "phpunit/phpunit": "^12.5",
                 "vimeo/psalm": "^6.16"
@@ -1098,27 +1105,28 @@
             "description": "Runtime component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/runtime/issues",
-                "source": "https://github.com/waffle-commons/runtime/tree/0.1.0-beta2.1"
+                "source": "https://github.com/waffle-commons/runtime/tree/0.1.0-beta4"
             },
-            "time": "2026-05-30T19:11:11+00:00"
+            "time": "2026-06-14T05:53:13+00:00"
         },
         {
             "name": "waffle-commons/security",
-            "version": "0.1.0-beta2.1",
+            "version": "0.1.0-beta4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/security.git",
-                "reference": "aa352dff0b88c3846b26ec303b9a47eb2cb14279"
+                "reference": "1f30afb502d1ec8836cc686501e9a68424253867"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/security/zipball/aa352dff0b88c3846b26ec303b9a47eb2cb14279",
-                "reference": "aa352dff0b88c3846b26ec303b9a47eb2cb14279",
+                "url": "https://api.github.com/repos/waffle-commons/security/zipball/1f30afb502d1ec8836cc686501e9a68424253867",
+                "reference": "1f30afb502d1ec8836cc686501e9a68424253867",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.5",
                 "psr/container": "^2.0",
+                "psr/http-factory": "^1.0",
                 "psr/http-server-middleware": "^1.0",
                 "psr/log": "^3.0",
                 "waffle-commons/contracts": "self.version",
@@ -1127,6 +1135,7 @@
             "require-dev": {
                 "carthage-software/mago": "^1.29",
                 "cyclonedx/cyclonedx-php-composer": "^6.2",
+                "igor-php/igor-php": "^0.7.0",
                 "php-mock/php-mock-phpunit": "^2.15",
                 "phpunit/phpunit": "^12.5",
                 "vimeo/psalm": "^6.16"
@@ -1150,22 +1159,22 @@
             "description": "Security component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/security/issues",
-                "source": "https://github.com/waffle-commons/security/tree/0.1.0-beta2.1"
+                "source": "https://github.com/waffle-commons/security/tree/0.1.0-beta4"
             },
-            "time": "2026-05-30T19:13:22+00:00"
+            "time": "2026-06-14T05:54:34+00:00"
         },
         {
             "name": "waffle-commons/utils",
-            "version": "0.1.0-beta2.1",
+            "version": "0.1.0-beta4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/utils.git",
-                "reference": "434d5929dc75a62050b726ba2cb3532d680557d4"
+                "reference": "2418d28585205a7160719815d5ec6b8bf71aaaae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/utils/zipball/434d5929dc75a62050b726ba2cb3532d680557d4",
-                "reference": "434d5929dc75a62050b726ba2cb3532d680557d4",
+                "url": "https://api.github.com/repos/waffle-commons/utils/zipball/2418d28585205a7160719815d5ec6b8bf71aaaae",
+                "reference": "2418d28585205a7160719815d5ec6b8bf71aaaae",
                 "shasum": ""
             },
             "require": {
@@ -1175,6 +1184,7 @@
             "require-dev": {
                 "carthage-software/mago": "^1.29",
                 "cyclonedx/cyclonedx-php-composer": "^6.2",
+                "igor-php/igor-php": "^0.7.0",
                 "php-mock/php-mock-phpunit": "^2.15",
                 "phpunit/phpunit": "^12.5",
                 "vimeo/psalm": "^6.16"
@@ -1198,22 +1208,22 @@
             "description": "Utils component for Waffle framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/utils/issues",
-                "source": "https://github.com/waffle-commons/utils/tree/0.1.0-beta2.1"
+                "source": "https://github.com/waffle-commons/utils/tree/0.1.0-beta4"
             },
-            "time": "2026-05-30T18:48:59+00:00"
+            "time": "2026-06-14T05:06:15+00:00"
         },
         {
             "name": "waffle-commons/waffle",
-            "version": "0.1.0-beta2.1",
+            "version": "0.1.0-beta4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/waffle-commons/waffle.git",
-                "reference": "a83168961bd4a82e0a4666379e4c1a1ffa222e53"
+                "reference": "dec69973ed17d0d09bdc01ff5513002fff8e62d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/waffle-commons/waffle/zipball/a83168961bd4a82e0a4666379e4c1a1ffa222e53",
-                "reference": "a83168961bd4a82e0a4666379e4c1a1ffa222e53",
+                "url": "https://api.github.com/repos/waffle-commons/waffle/zipball/dec69973ed17d0d09bdc01ff5513002fff8e62d6",
+                "reference": "dec69973ed17d0d09bdc01ff5513002fff8e62d6",
                 "shasum": ""
             },
             "require": {
@@ -1231,6 +1241,7 @@
             "require-dev": {
                 "carthage-software/mago": "^1.29",
                 "cyclonedx/cyclonedx-php-composer": "^6.2",
+                "igor-php/igor-php": "^0.7.0",
                 "php-mock/php-mock-phpunit": "^2.15",
                 "phpunit/phpunit": "^12.5",
                 "vimeo/psalm": "^6.16"
@@ -1254,9 +1265,9 @@
             "description": "A modern, minimalist, and security-focused PHP micro-framework.",
             "support": {
                 "issues": "https://github.com/waffle-commons/waffle/issues",
-                "source": "https://github.com/waffle-commons/waffle/tree/0.1.0-beta2.1"
+                "source": "https://github.com/waffle-commons/waffle/tree/0.1.0-beta4"
             },
-            "time": "2026-05-30T19:14:49+00:00"
+            "time": "2026-06-14T05:56:58+00:00"
         }
     ],
     "packages-dev": [],
