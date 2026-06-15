@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: docker/Dockerfile
       target: prod
+    image: waffle-serverless:prod
     container_name: waffle-serverless
     # CRITIQUE : pas de volumes en production !
     # Le code est immuable et figé dans l'image.
