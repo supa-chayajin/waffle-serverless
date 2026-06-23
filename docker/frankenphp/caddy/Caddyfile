@@ -1,23 +1,28 @@
-# Caddyfile d'EcoShield-Minimal — FrankenPHP en mode Worker pour AWS Lambda.
+# Caddyfile d'EcoShield-Minimal — FrankenPHP en mode Worker pour Kubernetes.
 
 {
 	# Mode Worker FrankenPHP : l'application est amorcée UNE SEULE FOIS puis
-	# réside en mémoire (conteneur + routes compilés). « num 1 » force un unique
-	# worker, optimal sur les environnements serverless mono-vCPU (AWS Lambda).
+	# réside en mémoire (conteneur + routes compilés). Le nombre de workers est
+	# piloté par FRANKENPHP_NUM_WORKERS (ConfigMap K8s) et doit suivre le CPU
+	# alloué au pod ; défaut 2.
 	frankenphp {
 		worker {
 			file /app/public/index.php
-			num 1
+			num {$FRANKENPHP_NUM_WORKERS:2}
 		}
 	}
 
-	# AWS Lambda assure lui-même la terminaison TLS en amont : on désactive
-	# l'HTTPS automatique de Caddy et on sert en clair sur le port local.
+	# L'Ingress NGINX assure la terminaison TLS en amont : on désactive l'HTTPS
+	# automatique de Caddy et on sert en clair sur le port interne du pod.
 	auto_https off
+
+	# Durcissement : pas d'API d'admin Caddy (control-plane :2019) ni d'autosave
+	# de configuration — l'image est immuable, la conf provient du Caddyfile figé.
+	admin off
+	persist_config off
 }
 
-# Le AWS Lambda Web Adapter (LWA) transmet chaque évènement Lambda à ce port
-# local : on écoute donc obligatoirement sur le port 8080.
+# Le Service K8s (ClusterIP) cible ce port ; l'Ingress y route le trafic.
 :8080 {
 	root * /app/public
 	encode zstd gzip

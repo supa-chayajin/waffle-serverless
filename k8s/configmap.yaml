@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: waffle-serverless-config
+  labels:
+    app.kubernetes.io/name: waffle-serverless
+data:
+  APP_ENV: "prod"
+  APP_DEBUG: "0"
+  # Domaine public servi — DOIT correspondre au host de l'Ingress (ingress.yaml).
+  # Alimente waffle.trusted_hosts (anti-injection d'en-tête Host). Les sondes K8s
+  # présentent « Host: localhost » (toujours de confiance), donc indépendantes.
+  SERVER_NAME: "waffle-serverless.example.com"
+  # Nombre de workers FrankenPHP résidents : à caler sur le CPU du pod (≈ limite CPU).
+  FRANKENPHP_NUM_WORKERS: "4"
+  # Recyclage du worker après N requêtes (borne la mémoire en mode worker).
+  MAX_REQUESTS: "500"
+  # Bouclier 2 (voter EcoShield) : "false" = POST /locked refusé par défaut
+  # (fail-closed). Passez à "true" pour ouvrir la route lors de la démonstration.
+  ECOSHIELD_LOCKED_OPEN: "false"

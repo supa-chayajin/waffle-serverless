@@ -1,38 +1,30 @@
 services:
   serverless:
-    # Construction à partir du stage 'prod' du Dockerfile.
-    # Ce stage est minimal, sécurisé et contient le code optimisé.
+    # Construit le stage « prod » du Dockerfile : image durcie et optimisée,
+    # identique à celle déployée sur Kubernetes (OVHcloud).
     build:
       context: .
       dockerfile: docker/Dockerfile
       target: prod
     image: waffle-serverless:prod
     container_name: waffle-serverless
-    # CRITIQUE : pas de volumes en production !
-    # Le code est immuable et figé dans l'image.
+    # CRITIQUE : pas de volumes en production — le code est figé dans l'image.
     volumes: []
-    # Variables d'environnement de production.
     environment:
-      # Utiliser le vrai nom de domaine (transmis via variable d'environnement, sinon localhost).
+      # Domaine servi : alimente waffle.trusted_hosts (anti-injection d'en-tête
+      # Host). En local, « localhost » suffit ; en cluster, c'est le domaine public.
       SERVER_NAME: ${SERVER_NAME:-localhost}
       APP_ENV: prod
-      APP_DEBUG: false
-      # En production réelle, les secrets doivent être injectés via la CI/CD ou Docker Secrets.
-      APP_SECRET: ${APP_SECRET:-ChangeMeInProduction}
-      WAFFLE_CSRF_SECRET: ${APP_SECRET:-ChangeMeInProduction}
-    # Exposition des ports.
-    # Le conteneur écoute uniquement sur :8080 (cf. Caddyfile + AWS_LWA_PORT) ;
-    # AWS Lambda assure la terminaison TLS en amont, donc pas de 443 ici.
+      APP_DEBUG: "false"
+      # Bouclier 2 (voter) : « true » ouvre POST /locked pour la démo. Refus par défaut.
+      ECOSHIELD_LOCKED_OPEN: ${ECOSHIELD_LOCKED_OPEN:-false}
+      # Workers résidents + recyclage (parité avec la ConfigMap K8s).
+      FRANKENPHP_NUM_WORKERS: ${FRANKENPHP_NUM_WORKERS:-2}
+      MAX_REQUESTS: ${MAX_REQUESTS:-500}
+      # Secret CSRF (≥ 32 octets, sinon le boot prod avorte — fail-closed).
+      # En production, injecté via un Secret Kubernetes ; ICI valeur DEV uniquement.
+      WAFFLE_CSRF_SECRET: ${WAFFLE_CSRF_SECRET:-dev-only-csrf-secret-change-me-0123456789abcdef}
+    # Le conteneur écoute en interne sur :8080 ; publié sur l'hôte en 6080.
     ports:
       - "6080:8080"
-    # Politique de redémarrage en production.
-    restart: always
-    networks:
-      - waffle-network
-      - waffle-serverless
-
-networks:
-  waffle-network:
-    driver: bridge
-  waffle-serverless:
-    driver: bridge
+    restart: unless-stopped

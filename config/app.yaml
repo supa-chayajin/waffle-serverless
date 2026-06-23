@@ -7,8 +7,12 @@ waffle:
   # Durcissement sécurité : hôtes de confiance.
   # Liste des domaines autorisés. Si vide, tous les hôtes sont acceptés (DEV uniquement).
   # En PROD, ce paramètre DOIT être renseigné pour prévenir l'injection d'en-tête Host.
+  # SERVER_NAME = domaine public (ConfigMap K8s) ; les sondes Kubernetes doivent
+  # présenter ce même Host (cf. httpHeaders du Deployment). Entrée vide filtrée
+  # à l'assemblage (AppKernelFactory) si SERVER_NAME n'est pas renseigné.
   trusted_hosts:
     - localhost
+    - '%env(SERVER_NAME)%'
   security:
     level: 10
     csrf:

@@ -17,9 +17,13 @@ require_once __DIR__ . '/../vendor/autoload.php';
 define('APP_ROOT', realpath(path: dirname(path: __DIR__)));
 const APP_CONFIG = 'config';
 
-new DotEnv(path: APP_ROOT)->load();
-$env = $_ENV[Constant::APP_ENV] ?? Constant::ENV_PROD;
-$debug = filter_var($_ENV[Constant::APP_DEBUG] ?? false, FILTER_VALIDATE_BOOL);
+// Registre d'environnement : le .env (lecture seule — DotEnv ne mute NI $_ENV NI
+// $_SERVER NI putenv(), conformément à la règle worker FrankenPHP) est fusionné
+// avec l'environnement processus, ce dernier l'emportant (les valeurs Docker/K8s
+// écrasent les défauts du .env). getenv() est worker-safe ; on évite $_ENV.
+$envRegistry = array_merge(new DotEnv(path: APP_ROOT)->load(), getenv());
+$env = $envRegistry[Constant::APP_ENV] ?? Constant::ENV_PROD;
+$debug = filter_var($envRegistry[Constant::APP_DEBUG] ?? false, FILTER_VALIDATE_BOOL);
 
 // 1. Contexte & assemblage.
 // On délègue à la Factory la création des implémentations concrètes.
@@ -29,7 +33,10 @@ $kernel = AppKernelFactory::create(env: $env, debug: $debug);
 // Le runtime orchestre simplement la boucle FrankenPHP [Kernel + Request -> Emitter].
 // STAB-01 : la GlobalsFactory et l'émetteur sont des instances par processus,
 // injectées explicitement dans le runtime (aucun état statique partagé).
-$maxRequests = (int)($_SERVER['MAX_REQUESTS'] ?? 500);
+// MAX_REQUESTS recycle le worker après N requêtes (borne la mémoire en mode
+// worker) ; lu depuis le registre d'environnement (ConfigMap K8s / Docker / .env).
+$maxRequestsRaw = $envRegistry['MAX_REQUESTS'] ?? '';
+$maxRequests = $maxRequestsRaw !== '' ? (int) $maxRequestsRaw : 500;
 new WaffleRuntime(new GlobalsFactory(), new ResponseEmitter())
     ->loop(
         kernel: $kernel,

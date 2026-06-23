@@ -1,0 +1,110 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: waffle-serverless
+  labels:
+    app.kubernetes.io/name: waffle-serverless
+spec:
+  replicas: 2
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: waffle-serverless
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: waffle-serverless
+    spec:
+      # Drain « propre » du worker FrankenPHP sur SIGTERM : laisse le temps aux
+      # requêtes en cours de se terminer avant l'arrêt.
+      terminationGracePeriodSeconds: 30
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        runAsGroup: 1001
+        fsGroup: 1001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: app
+          # Image construite depuis docker/Dockerfile (cible « prod »). Le tag est
+          # piloté par k8s/kustomization.yaml (transformer images:).
+          image: ghcr.io/supa-chayajin/waffle-serverless:0.1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: waffle-serverless-config
+            - secretRef:
+                name: waffle-serverless-secret
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "256Mi"
+            limits:
+              cpu: "1"
+              memory: "512Mi"
+          # Démarrage : laisse le temps au préchargement OPcache + boot du worker
+          # (≈ 60 s max) avant que liveness/readiness ne prennent le relais.
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: http
+              httpHeaders:
+                - name: Host
+                  value: localhost
+            periodSeconds: 3
+            failureThreshold: 20
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+              httpHeaders:
+                - name: Host
+                  value: localhost
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: http
+              httpHeaders:
+                - name: Host
+                  value: localhost
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          lifecycle:
+            preStop:
+              # Fenêtre de drain : laisse l'Ingress/Service déréférencer le pod
+              # AVANT que FrankenPHP ne reçoive SIGTERM (évite les 502 en rollout).
+              exec:
+                command: ["sleep", "5"]
+          volumeMounts:
+            # Rootfs en lecture seule ⇒ dossiers inscriptibles montés en emptyDir.
+            - name: tmp
+              mountPath: /tmp
+            - name: caddy-config
+              mountPath: /config
+            - name: caddy-data
+              mountPath: /data
+      volumes:
+        - name: tmp
+          emptyDir: {}
+        - name: caddy-config
+          emptyDir: {}
+        - name: caddy-data
+          emptyDir: {}

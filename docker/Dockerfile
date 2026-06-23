@@ -1,76 +1,65 @@
 # syntax=docker/dockerfile:1
 
 # =============================================================================
-# EcoShield-Minimal — image serverless FrankenPHP pour AWS Lambda.
+# EcoShield-Minimal — image FrankenPHP (mode worker) pour Kubernetes (OVHcloud).
 #
 # Build multi-étapes :
-#   1. builder : installation des dépendances Composer de production ;
-#   2. prod    : image finale minimale (LWA + OPcache preload + worker mode).
+#   1. builder : dépendances Composer de production + autoloader optimisé ;
+#   2. prod    : image finale durcie (OPcache preload + JIT + worker + non-root).
+#
+# La terminaison TLS est assurée par l'Ingress NGINX en amont (cf. k8s/) : le
+# conteneur ne sert qu'en clair sur :8080. Aucun adaptateur Lambda — déploiement
+# 100 % Kubernetes.
 # =============================================================================
 
 # ---- Étape 1 : Builder (dépendances Composer optimisées) --------------------
-FROM dunglas/frankenphp:1.12.3-php8-trixie AS builder
+FROM dunglas/frankenphp:1.12.3-php8.5-trixie AS builder
 
 # Composer fourni par l'image officielle.
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 
-# Outils de build + extensions requises (yaml pour le parseur de configuration).
+# Outils de build + extensions exigées par composer.json (yaml + opcache).
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    acl \
-    file \
-    gettext \
-    libyaml-dev \
-    zip \
-    unzip \
-    && install-php-extensions \
-        apcu \
-        gd \
-        intl \
-        opcache \
-        zip \
-        yaml \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Cache Docker : on copie d'abord les manifestes, puis on installe les vendors.
-COPY composer.json composer.lock ./
-
-RUN composer install --no-dev --no-scripts --prefer-dist --no-progress --no-interaction --optimize-autoloader
-
-# Copie du code applicatif, puis autoloader optimisé (classmap autoritaire).
-COPY . .
-
-# Enable Preload ONLY in production and ONLY after code is copied
-RUN echo "opcache.validate_timestamps = 1" >> $PHP_INI_DIR/conf.d/app.ini \
-    && echo "opcache.preload=/app/config/preload.php" >> $PHP_INI_DIR/conf.d/app.ini
-
-# Autoloader warmup
-RUN composer dump-autoload --optimize --classmap-authoritative --no-dev
-
-# ---- Étape 2 : Production (image minimale et sécurisée) ---------------------
-FROM dunglas/frankenphp:1.12.3-php8.5-trixie AS prod
-
-# Injection du AWS Lambda Web Adapter (LWA) en tant qu'extension Lambda :
-# il convertit chaque évènement Lambda en requête HTTP vers le port local 8080.
-COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4 /lambda-adapter /opt/extensions/lambda-adapter
-
-WORKDIR /app
-
-# Extensions runtime : OPcache (préchargement) + YAML (lecture de app.yaml).
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends libyaml-dev \
+        unzip \
+        libyaml-dev \
     && install-php-extensions opcache yaml \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Environnement d'exécution.
-#   - APP_ENV / APP_DEBUG : alimentent l'interpolation %env(...)% de app.yaml ;
-#   - AWS_LWA_PORT : port que le Lambda Web Adapter interroge (doit valoir 8080).
+# Cache Docker : manifestes d'abord, puis installation des vendors de PROD.
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --no-scripts --prefer-dist --no-progress --no-interaction --optimize-autoloader
+
+# Code applicatif (le .dockerignore exclut tests/, vendor/, .git…), puis
+# autoloader autoritaire (classmap figée).
+COPY . .
+RUN composer dump-autoload --optimize --classmap-authoritative --no-dev
+
+# ---- Étape 2 : Production (image minimale et durcie) ------------------------
+FROM dunglas/frankenphp:1.12.3-php8.5-trixie AS prod
+
+WORKDIR /app
+
+# Extensions runtime (OPcache + YAML) et curl (sondes / debug en direct).
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libyaml-dev curl \
+    && install-php-extensions opcache yaml \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Environnement d'exécution (surchargé par la ConfigMap K8s en cluster).
+#   - FRANKENPHP_NUM_WORKERS : nombre de workers résidents (≈ CPU alloué) ;
+#   - MAX_REQUESTS           : recyclage du worker après N requêtes (borne mémoire) ;
+#   - XDG_*_HOME             : dossiers inscriptibles de Caddy (montés en emptyDir
+#                             sous K8s avec un rootfs en lecture seule).
 ENV APP_ENV=prod \
     APP_DEBUG=0 \
-    AWS_LWA_PORT=8080
+    FRANKENPHP_NUM_WORKERS=2 \
+    MAX_REQUESTS=500 \
+    XDG_CONFIG_HOME=/config \
+    XDG_DATA_HOME=/data
 
-# Caddyfile du POC (mode worker + écoute sur :8080).
+# Caddyfile du POC (mode worker + écoute :8080).
 COPY docker/frankenphp/caddy/Caddyfile /etc/frankenphp/Caddyfile
 
 # Code applicatif préparé par le builder.
@@ -79,18 +68,35 @@ COPY --from=builder /app/src /app/src
 COPY --from=builder /app/config /app/config
 COPY --from=builder /app/public /app/public
 
-# Préchargement OPcache : compile les classes de Waffle en mémoire partagée au
-# démarrage du conteneur. « validate_timestamps=0 » fige le cache (code immuable
-# en production), gage de démarrages « chauds » instantanés.
+# OPcache : préchargement du framework en mémoire partagée + dimensionnement et
+# JIT pour le mode worker. « validate_timestamps=0 » fige le cache (code immuable
+# en production) ⇒ démarrages « chauds » instantanés.
 RUN { \
       echo "opcache.enable=1"; \
+      echo "opcache.enable_cli=0"; \
       echo "opcache.preload=/app/config/preload.php"; \
-      echo "opcache.preload_user=root"; \
+      echo "opcache.preload_user=app"; \
       echo "opcache.validate_timestamps=0"; \
-    } > "$PHP_INI_DIR/conf.d/zz-serverless.ini"
+      echo "opcache.memory_consumption=128"; \
+      echo "opcache.interned_strings_buffer=16"; \
+      echo "opcache.max_accelerated_files=20000"; \
+      echo "opcache.jit=tracing"; \
+      echo "opcache.jit_buffer_size=64M"; \
+    } > "$PHP_INI_DIR/conf.d/zz-worker.ini"
 
-# Le AWS Lambda Web Adapter interroge ce port pour relayer les évènements.
+# Durcissement : utilisateur non-root + dossiers inscriptibles. Permet à K8s
+# d'imposer runAsNonRoot + readOnlyRootFilesystem (cf. deployment.yaml).
+RUN groupadd -g 1001 app \
+    && useradd -u 1001 -g app -d /app -s /usr/sbin/nologin app \
+    && mkdir -p /config /data \
+    && chown -R app:app /app /config /data
+USER app
+
 EXPOSE 8080
+
+# Sonde Docker locale (Compose) ; en cluster, ce sont les probes K8s qui font foi.
+HEALTHCHECK --interval=30s --timeout=3s --start-period=20s --retries=3 \
+    CMD curl -fsS http://127.0.0.1:8080/healthz || exit 1
 
 # Lancement de FrankenPHP en mode worker, piloté par le Caddyfile.
 CMD ["frankenphp", "run", "--config", "/etc/frankenphp/Caddyfile"]

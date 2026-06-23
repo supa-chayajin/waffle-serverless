@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Tous les objets sont déployés dans ce namespace.
+namespace: waffle-serverless
+
+resources:
+  - namespace.yaml
+  - configmap.yaml
+  - secret.yaml
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml
+
+# Point de surcharge de l'image : changez `newName`/`newTag` ici (ou via
+# `kustomize edit set image …`) sans toucher au Deployment. Pour OVH Managed
+# Private Registry (Harbor) : newName: <projet>.<region>.registry.ovh.net/<repo>.
+images:
+  - name: ghcr.io/supa-chayajin/waffle-serverless
+    newTag: "0.1.0"
+
+# HPA non inclus volontairement (cf. k8s/hpa.yaml) : il requiert metrics-server
+# et impose de retirer `replicas` du Deployment. Appliquez-le séparément si besoin.
