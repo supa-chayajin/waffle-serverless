@@ -34,7 +34,7 @@ les capacités de Waffle Beta 4 et de PHP 8.5 :
    (fail-closed) tant que `ECOSHIELD_LOCKED_OPEN` n'est pas « vrai » ⇒ `403`.
 
 Puis le corps JSON est hydraté et validé par le DTO `Message` (property hook) :
-un `author` non purement alphabétique ⇒ `422`.
+un `content` vide ou composé uniquement d'espaces ⇒ `422`.
 
 ---
 
@@ -101,7 +101,7 @@ curl http://localhost:6080/
 
 # 2. Bouclier 1 (CSRF) : POST sans jeton → 403
 curl -i -X POST http://localhost:6080/locked \
-  -H 'Content-Type: application/json' -d '{"author":"Ada"}'
+  -H 'Content-Type: application/json' -d '{"content":"Ada"}'
 # HTTP/1.1 403 Forbidden — "Missing CSRF token…"
 
 # 3. On forge un jeton (et on capture le cookie WAFFLE_SID)
@@ -110,20 +110,20 @@ TOKEN=$(curl -s -c cj.txt http://localhost:6080/csrf \
 
 # 4. Bouclier 2 (voter) : jeton OK mais ECOSHIELD_LOCKED_OPEN=false (défaut) → 403
 curl -i -b cj.txt -X POST http://localhost:6080/locked \
-  -H "X-CSRF-Token: $TOKEN" -H 'Content-Type: application/json' -d '{"author":"Ada"}'
+  -H "X-CSRF-Token: $TOKEN" -H 'Content-Type: application/json' -d '{"content":"Ada"}'
 # HTTP/1.1 403 Forbidden — "Access refused by …RestrictedAccess"
 
 # 5. On ouvre le bouclier (redémarrer compose avec ECOSHIELD_LOCKED_OPEN=true)
 ECOSHIELD_LOCKED_OPEN=true docker compose up -d
 TOKEN=$(curl -s -c cj.txt http://localhost:6080/csrf | sed -n 's/.*"token":"\([^"]*\)".*/\1/p')
 curl -b cj.txt -X POST http://localhost:6080/locked \
-  -H "X-CSRF-Token: $TOKEN" -H 'Content-Type: application/json' -d '{"author":"Ada"}'
+  -H "X-CSRF-Token: $TOKEN" -H 'Content-Type: application/json' -d '{"content":"Ada"}'
 # {"message":"Waffle says Hi to Ada !"}
 
-# 6. DTO (property hook) : author non alphabétique → 422
+# 6. DTO (property hook) : content vide ou composé d'espaces seuls → 422
 curl -i -b cj.txt -X POST http://localhost:6080/locked \
-  -H "X-CSRF-Token: $TOKEN" -H 'Content-Type: application/json' -d '{"author":"A1b2"}'
-# HTTP/1.1 422 Unprocessable Entity — "…uniquement de lettres."
+  -H "X-CSRF-Token: $TOKEN" -H 'Content-Type: application/json' -d '{"content":"   "}'
+# HTTP/1.1 422 Unprocessable Entity — "…vide ou ne contenir que des espaces."
 ```
 
 ---

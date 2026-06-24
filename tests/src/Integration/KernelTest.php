@@ -49,7 +49,7 @@ final class KernelTest extends TestCase
     public function testLockedWithoutTokenIsForbidden(): void
     {
         // Bouclier 1 : CsrfMiddleware refuse faute de jeton.
-        static::assertSame(403, $this->dispatch('POST', '/locked', body: ['author' => 'Ada'])->getStatusCode());
+        static::assertSame(403, $this->dispatch('POST', '/locked', body: ['content' => 'Ada'])->getStatusCode());
     }
 
     public function testHappyPathWhenShieldIsOpen(): void
@@ -58,7 +58,7 @@ final class KernelTest extends TestCase
 
         putenv('ECOSHIELD_LOCKED_OPEN=true');
         $response = $this->dispatch('POST', '/locked', headers: ['X-CSRF-Token' => $token], cookies: $cookies, body: [
-            'author' => 'Ada',
+            'content' => 'Ada',
         ]);
 
         static::assertSame(200, $response->getStatusCode());
@@ -71,23 +71,24 @@ final class KernelTest extends TestCase
 
         putenv('ECOSHIELD_LOCKED_OPEN=false');
         $response = $this->dispatch('POST', '/locked', headers: ['X-CSRF-Token' => $token], cookies: $cookies, body: [
-            'author' => 'Ada',
+            'content' => 'Ada',
         ]);
 
         // Bouclier 2 : le voter RestrictedAccess refuse par défaut (fail-closed).
         static::assertSame(403, $response->getStatusCode());
     }
 
-    public function testInvalidAuthorIsRejected(): void
+    public function testBlankContentIsRejected(): void
     {
         [$token, $cookies] = $this->mintCsrfToken();
 
         putenv('ECOSHIELD_LOCKED_OPEN=true');
         $response = $this->dispatch('POST', '/locked', headers: ['X-CSRF-Token' => $token], cookies: $cookies, body: [
-            'author' => 'A1b2',
+            'content' => '   ',
         ]);
 
-        // Le property hook du DTO rejette l'entrée non-alphabétique (422).
+        // Le property hook du DTO rejette une valeur vide ou composée uniquement
+        // d'espaces (422), même bouclier ouvert et jeton CSRF valide.
         static::assertSame(422, $response->getStatusCode());
     }
 

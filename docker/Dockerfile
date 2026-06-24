@@ -95,8 +95,12 @@ USER app
 EXPOSE 8080
 
 # Sonde Docker locale (Compose) ; en cluster, ce sont les probes K8s qui font foi.
+# L'en-tête « Host: localhost » est OBLIGATOIRE : le TrustedHostMiddleware (RFC-003)
+# rejette tout hôte hors allow-list (un appel direct à 127.0.0.1 ⇒ 400, donc un
+# conteneur faussement « unhealthy »). Les probes K8s injectent le même en-tête
+# (cf. k8s/deployment.yaml).
 HEALTHCHECK --interval=30s --timeout=3s --start-period=20s --retries=3 \
-    CMD curl -fsS http://127.0.0.1:8080/healthz || exit 1
+    CMD curl -fsS -H "Host: localhost" http://127.0.0.1:8080/healthz || exit 1
 
 # Lancement de FrankenPHP en mode worker, piloté par le Caddyfile.
 CMD ["frankenphp", "run", "--config", "/etc/frankenphp/Caddyfile"]

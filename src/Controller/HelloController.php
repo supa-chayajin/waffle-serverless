@@ -79,8 +79,8 @@ final class HelloController extends BaseController
      *      refus par défaut tant que ECOSHIELD_LOCKED_OPEN n'est pas « vrai ».
      *
      * Le corps JSON est hydraté et validé par le DTO Message (property hooks) :
-     * un `author` non conforme ⇒ 400. Combinaison : chemin « /locked », nom
-     * « app_locked ».
+     * un `content` vide ou composé uniquement d'espaces ⇒ 422. Combinaison :
+     * chemin « /locked », nom « app_locked ».
      *
      * @throws RenderingException
      */
@@ -90,7 +90,7 @@ final class HelloController extends BaseController
     public function locked(Message $message): ResponseInterface
     {
         return $this->jsonResponse(data: [
-            'message' => sprintf('Waffle says Hi to %s !', $message->author),
+            'message' => sprintf('Waffle says Hi to %s !', $message->content),
         ]);
     }
 }

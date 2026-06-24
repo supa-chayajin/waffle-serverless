@@ -11,32 +11,43 @@ use Waffle\Exception\ValidationException;
 use Wfl\Dto\Message;
 
 /**
- * Vérifie le « property hook » set du DTO : assainissement (trim) + validation
- * (lettres uniquement), au plus près de la donnée.
+ * Vérifie le « property hook » set du DTO : assainissement (trim, y compris les
+ * espaces Unicode) puis validation (rejet du vide / des espaces seuls), au plus
+ * près de la donnée.
  */
 #[CoversClass(Message::class)]
 final class MessageTest extends TestCase
 {
-    public function testTrimsAndAcceptsLettersIncludingAccents(): void
+    /**
+     * @return iterable<string, array{0: string, 1: string}>
+     */
+    public static function validContents(): iterable
     {
-        static::assertSame('Ada', new Message('  Ada  ')->author);
-        static::assertSame('Léa', new Message('Léa')->author);
+        yield 'trims surrounding whitespace' => ['  Ada  ', 'Ada'];
+        yield 'preserves inner spaces and words' => ['Bonjour Waffle', 'Bonjour Waffle'];
+        yield 'accepts accents, digits and punctuation' => ['Léa a écrit 42 !', 'Léa a écrit 42 !'];
+        yield 'trims tabs and newlines' => ["\t Salut \n", 'Salut'];
+    }
+
+    #[DataProvider('validContents')]
+    public function testTrimsAndAcceptsNonEmptyContent(string $input, string $expected): void
+    {
+        static::assertSame($expected, new Message($input)->content);
     }
 
     /**
      * @return iterable<string, array{0: string}>
      */
-    public static function invalidAuthors(): iterable
+    public static function blankContents(): iterable
     {
-        yield 'empty' => [''];
-        yield 'blank' => ['   '];
-        yield 'digits' => ['A1b2'];
-        yield 'symbols' => ['Ada!'];
-        yield 'spaced words' => ['Ada Lovelace'];
+        yield 'empty string' => [''];
+        yield 'spaces only' => ['   '];
+        yield 'tabs and newlines only' => ["\t\n "];
+        yield 'non-breaking space only' => ["\u{00A0}"];
     }
 
-    #[DataProvider('invalidAuthors')]
-    public function testRejectsNonAlphabeticInput(string $candidate): void
+    #[DataProvider('blankContents')]
+    public function testRejectsEmptyOrWhitespaceOnlyInput(string $candidate): void
     {
         $this->expectException(ValidationException::class);
 
