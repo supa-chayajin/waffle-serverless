@@ -1,0 +1,37 @@
+# Caddyfile d'EcoShield-Minimal — FrankenPHP en mode Worker pour Kubernetes.
+
+{
+	# Mode Worker FrankenPHP : l'application est amorcée UNE SEULE FOIS puis
+	# réside en mémoire (conteneur + routes compilés). Le nombre de workers est
+	# piloté par FRANKENPHP_NUM_WORKERS (ConfigMap K8s) et doit suivre le CPU
+	# alloué au pod ; défaut 2.
+	frankenphp {
+		worker {
+			file /app/public/index.php
+			num {$FRANKENPHP_NUM_WORKERS:2}
+		}
+	}
+
+	# L'Ingress NGINX assure la terminaison TLS en amont : on désactive l'HTTPS
+	# automatique de Caddy et on sert en clair sur le port interne du pod.
+	auto_https off
+
+	# Durcissement : pas d'API d'admin Caddy (control-plane :2019) ni d'autosave
+	# de configuration — l'image est immuable, la conf provient du Caddyfile figé.
+	admin off
+	persist_config off
+}
+
+# Le Service K8s (ClusterIP) cible ce port ; l'Ingress y route le trafic.
+:8080 {
+	root * /app/public
+	encode zstd gzip
+
+	php_server {
+		# Point d'entrée unique pour les URLs ne correspondant pas à un fichier.
+		resolve_root_symlink
+	}
+
+	# Sert les éventuels fichiers statiques (images, CSS, JS).
+	file_server
+}

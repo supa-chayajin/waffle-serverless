@@ -11,35 +11,21 @@ use Waffle\Kernel as BaseKernel;
  *
  * Étend le Kernel CONCRET de Waffle (Waffle\Kernel), et non l'abstrait
  * Waffle\Abstract\AbstractKernel : l'analyseur de sécurité du framework
- * (System::boot -> Security::analyze) EXIGE que le noyau soit une instance de
+ * (System::boot → Security::analyze) EXIGE que le noyau soit une instance de
  * `Waffle\Kernel & AbstractKernel & KernelInterface`. Hériter directement de
  * l'abstrait déclencherait une SecurityException au démarrage.
  *
- * Waffle\Kernel implémente déjà, via AbstractKernel, l'intégralité du cycle de
- * vie résident :
+ * Tout le cycle de vie résident est déjà fourni par AbstractKernel ; aucune
+ * logique n'est réécrite ici :
  *   - boot()      : lecture de l'environnement processus (une seule fois) ;
- *   - configure() : compilation du conteneur, des contrôleurs et du pipeline
- *                   en mémoire partagée (une seule fois, au démarrage du worker) ;
- *   - handle()    : chemin chaud, exécuté à CHAQUE invocation Lambda ;
- *   - reset()     : purge de l'état à portée requête entre deux itérations.
+ *   - configure() : compilation du conteneur, des contrôleurs et du pipeline en
+ *                   mémoire partagée (une seule fois, au démarrage du worker) ;
+ *   - handle()    : chemin chaud, exécuté à CHAQUE requête ;
+ *   - reset()     : purge de l'état à portée requête entre deux itérations du
+ *                   worker FrankenPHP — garant de l'absence de fuite d'état
+ *                   (statelessness).
  *
- * On ne réécrit AUCUNE logique de cycle de vie : la dupliquer introduirait de la
- * dette et fragiliserait un flux déjà éprouvé. Seul `reset()` est surchargé —
- * point d'extension documenté garantissant l'absence de fuite d'état entre les
- * invocations du worker FrankenPHP (statelessness).
+ * Cette classe reste vide À DESSEIN : un point d'extension prêt à l'emploi, sans
+ * dette. Réécrire un crochet du cycle de vie fragiliserait un flux déjà éprouvé.
  */
-final class AppKernel extends BaseKernel
-{
-    /**
-     * Réinitialisation post-requête (mandat de statelessness FrankenPHP).
-     *
-     * Délègue au Kernel parent, qui purge le conteneur (services à portée
-     * requête) via Container::reset(). Tout état applicatif à vider entre deux
-     * invocations Lambda devra l'être ICI, avant l'appel au parent.
-     */
-    #[\Override]
-    public function reset(): void
-    {
-        parent::reset();
-    }
-}
+final class AppKernel extends BaseKernel {}

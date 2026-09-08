@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: waffle-serverless
+  labels:
+    app.kubernetes.io/name: waffle-serverless
+  annotations:
+    # TLS automatique via cert-manager (le ClusterIssuer doit exister dans le
+    # cluster — voir README). Let's Encrypt remplit le Secret « ...-tls » ci-dessous.
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    # Redirection HTTP → HTTPS au niveau de l'Ingress Controller NGINX.
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    # Délais alignés sur un worker PHP (réponses courtes ; pas de long-polling ici).
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "5"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "30"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "30"
+    nginx.ingress.kubernetes.io/proxy-body-size: "1m"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - waffle-serverless.example.com
+      secretName: waffle-serverless-tls
+  rules:
+    - host: waffle-serverless.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: waffle-serverless
+                port:
+                  number: 80

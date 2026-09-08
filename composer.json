@@ -1,6 +1,6 @@
 {
-    "name": "supa-chayajin/waffle-lambda",
-    "description": "PHP Proxy Shield on AWS Lambda",
+    "name": "supa-chayajin/waffle-serverless",
+    "description": "PHP Proxy Shield — FrankenPHP worker mode on Kubernetes (OVHcloud), built on Waffle",
     "type": "project",
     "license": "MIT",
     "autoload": {
@@ -19,18 +19,48 @@
         }
     ],
     "minimum-stability": "beta",
+    "prefer-stable": true,
     "require": {
-        "waffle-commons/contracts": "0.1.0-beta2.1",
-        "waffle-commons/waffle": "0.1.0-beta2.1",
-        "waffle-commons/container": "0.1.0-beta2.1",
-        "waffle-commons/config": "0.1.0-beta2.1",
-        "waffle-commons/runtime": "0.1.0-beta2.1",
-        "waffle-commons/pipeline": "0.1.0-beta2.1",
-        "waffle-commons/http": "0.1.0-beta2.1",
-        "waffle-commons/http-client": "0.1.0-beta2.1",
-        "waffle-commons/error-handler": "0.1.0-beta2.1",
-        "waffle-commons/routing": "0.1.0-beta2.1",
-        "waffle-commons/security": "0.1.0-beta2.1",
-        "waffle-commons/cache": "0.1.0-beta2.1"
+        "php": "^8.5",
+        "ext-yaml": "*",
+        "ext-zend-opcache": "*",
+        "waffle-commons/contracts": "0.1.0-beta4",
+        "waffle-commons/waffle": "0.1.0-beta4",
+        "waffle-commons/container": "0.1.0-beta4",
+        "waffle-commons/config": "0.1.0-beta4",
+        "waffle-commons/runtime": "0.1.0-beta4",
+        "waffle-commons/pipeline": "0.1.0-beta4",
+        "waffle-commons/http": "0.1.0-beta4",
+        "waffle-commons/http-client": "0.1.0-beta4",
+        "waffle-commons/error-handler": "0.1.0-beta4",
+        "waffle-commons/routing": "0.1.0-beta4",
+        "waffle-commons/security": "0.1.0-beta4",
+        "waffle-commons/cache": "0.1.0-beta4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12.5",
+        "carthage-software/mago": "^1.29",
+        "igor-php/igor-php": "^0.7.0"
+    },
+    "scripts": {
+        "formatter": "vendor/bin/mago fmt",
+        "linter": "vendor/bin/mago lint",
+        "analyzer": "vendor/bin/mago analyze",
+        "guard": "vendor/bin/mago guard",
+        "mago": [
+            "@formatter",
+            "@linter",
+            "@analyzer",
+            "@guard"
+        ],
+        "tests": "vendor/bin/phpunit",
+        "igor": "vendor/bin/igor-php ."
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "carthage-software/mago": true
+        },
+        "sort-packages": true
     }
 }
